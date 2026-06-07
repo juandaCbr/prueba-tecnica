@@ -12,7 +12,7 @@ import { AuthService } from '../../core/services/auth';
 })
 export class ListadoCursosComponent implements OnInit {
   cursos: any[] = [];
-  allCursos: any[] = []; // Lista maestra para filtrar
+  allCursos: any[] = []; 
   mensaje: string = '';
   esAdmin: boolean = false;
 
@@ -30,7 +30,7 @@ export class ListadoCursosComponent implements OnInit {
   cargarCursos(): void {
     this.cursoService.obtenerCursos().subscribe({
       next: (data) => {
-        // Guardamos en la lista maestra y en la lista de visualización
+        
         const lista = Array.isArray(data) ? data : (data.cursos || []);
         this.allCursos = lista;
         this.cursos = [...this.allCursos]; 
@@ -42,7 +42,7 @@ export class ListadoCursosComponent implements OnInit {
     });
   }
 
-  // Método de filtrado Pro
+ 
   filtrarCursos(event: any): void {
     const termino = event.target.value.toLowerCase();
     this.cursos = this.allCursos.filter(c => 

@@ -7,7 +7,6 @@ import { CursoService } from '../../core/services/curso';
 @Component({
   selector: 'app-crear-curso',
   standalone: true,
-  // importamos modulos necesarios para el formulario y la navegacion
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './crear-curso.html'
 })

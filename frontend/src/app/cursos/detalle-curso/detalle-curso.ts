@@ -112,11 +112,11 @@ export class DetalleCursoComponent implements OnInit {
     });
   }
 
-  // funcion corregida con tipado explicito
+  
   verificarInscripcion(): void {
     this.cursoService.obtenerMisCursos().subscribe({
       next: (data) => {
-        // definimos explicitamente que es un arreglo de tipo any
+        
         let misCursos: any[] = []; 
         
         if (Array.isArray(data)) {
@@ -127,7 +127,7 @@ export class DetalleCursoComponent implements OnInit {
           misCursos = data.mis_cursos;
         }
         
-        // asignamos el tipo any al parametro c de la funcion flecha
+        
         this.yaInscrito = misCursos.some((c: any) => c.curso_id === this.cursoId);
         this.cdr.detectChanges();
       },
