@@ -20,7 +20,7 @@ Se han cubierto requerimientos más allá de las historias de usuario básicas p
 5. **Vista de Detalles Avanzada:** * **Para Estudiantes:** Prevención de doble inscripción y visualización del progreso.
    * **Para Administradores:** Tabla dinámica con el listado de todos los estudiantes inscritos por curso.
 
-## Notas Importantes para el Evaluador
+## Notas Importantes
 
 * **Acceso de Administrador (Atajo de Evaluación):** Para facilitar la revisión de las vistas de creación y edición sin necesidad de manipular la base de datos manualmente, la lógica de registro asigna automáticamente el rol de `admin` a cualquier cuenta nueva cuyo correo electrónico contenga la palabra **"admin"** (ej. `admin@prueba.com`). Cualquier otro correo será registrado como `estudiante`.
 * **Pruebas Unitarias:** Los archivos `.spec.ts` generados por defecto por Angular fueron omitidos/comentados para priorizar el desarrollo de las funcionalidades extra, la arquitectura de roles y el pulido de la interfaz gráfica dentro del tiempo establecido.
