@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm mt-5">
+        <div class="card-body p-4">
+          <h3 class="card-title text-center mb-4">iniciar sesión</h3>
+
+          <div *ngIf="errorMensaje" class="alert alert-danger py-2" role="alert">
+            {{ errorMensaje }}
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
+              >
+              <div class="invalid-feedback">
+                ingresa un correo válido.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label">contraseña</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+              >
+              <div class="invalid-feedback">
+                la contraseña es obligatoria.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+              ingresar
+            </button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+/* fuentes y capitalizacion automatica para titulos */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* efecto hover profesional para las tarjetas */
+.curso-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.curso-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* estilizacion de los badges (etiquetas) */
+.badge-custom {
+  font-weight: 500;
+  padding: 0.5em 0.8em;
+  border-radius: 6px;
+}
+/* fuentes modernas */
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
+
+/* mejora de tarjetas y contenedores */
+.card { border-radius: 15px !important; border: none !important; box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important; }
+
+/* botones mas elegantes */
+.btn { border-radius: 8px !important; padding: 10px 20px !important; transition: all 0.2s; }
+.btn:hover { transform: translateY(-2px); }
+
+/* titulos con mayuscula inicial y espacio */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+  letter-spacing: -0.5px;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+/* formularios pro */
+.form-control { border-radius: 8px !important; padding: 12px !important; border: 1px solid #dee2e6; }
+.form-label { font-weight: 600; color: #495057; }

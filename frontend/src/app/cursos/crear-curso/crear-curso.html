@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-success text-white py-3">
+          <h4 class="mb-0">crear nuevo curso</h4>
+        </div>
+        <div class="card-body p-4">
+          
+          <div *ngIf="mensajeError" class="alert alert-danger">
+            {{ mensajeError }}
+          </div>
+
+          <form [formGroup]="cursoForm" (ngSubmit)="guardarCurso()">
+            
+            <div class="mb-3">
+              <label for="titulo" class="form-label">título del curso</label>
+              <input 
+                type="text" 
+                id="titulo" 
+                class="form-control" 
+                formControlName="titulo" 
+                [ngClass]="{'is-invalid': cursoForm.get('titulo')?.invalid && cursoForm.get('titulo')?.touched}"
+              >
+              <div class="invalid-feedback">
+                el título es obligatorio.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="instructor" class="form-label">nombre del instructor</label>
+              <input 
+                type="text" 
+                id="instructor" 
+                class="form-control" 
+                formControlName="instructor" 
+                [ngClass]="{'is-invalid': cursoForm.get('instructor')?.invalid && cursoForm.get('instructor')?.touched}"
+              >
+              <div class="invalid-feedback">
+                el instructor es obligatorio.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="descripcion" class="form-label">descripción detallada</label>
+              <textarea 
+                id="descripcion" 
+                class="form-control" 
+                rows="3" 
+                formControlName="descripcion" 
+                [ngClass]="{'is-invalid': cursoForm.get('descripcion')?.invalid && cursoForm.get('descripcion')?.touched}"
+              ></textarea>
+              <div class="invalid-feedback">
+                la descripción es obligatoria.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <a routerLink="/cursos" class="btn btn-outline-secondary">cancelar</a>
+              <button type="submit" class="btn btn-success px-4" [disabled]="cursoForm.invalid">guardar curso</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Cursos disponibles</h2>
+    <div>
+      <a *ngIf="esAdmin" routerLink="/cursos/crear" class="btn btn-success me-2 fw-bold shadow-sm">Crear nuevo curso</a>
+      <a routerLink="/dashboard" class="btn btn-secondary fw-bold shadow-sm">Volver al inicio</a>
+    </div>
+  </div>
+
+  <div *ngIf="mensaje" class="alert alert-info shadow-sm fw-bold">
+    {{ mensaje }}
+  </div>
+
+  <div class="mb-4">
+    <input type="text" class="form-control form-control-lg shadow-sm" 
+           placeholder="Buscar curso por título o instructor..." 
+           (input)="filtrarCursos($event)">
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let curso of cursos">
+      <div class="card h-100 shadow-sm border-0 curso-card">
+        
+        <div class="bg-primary bg-opacity-10 py-3 text-center border-bottom border-primary border-opacity-10">
+           <span class="badge bg-primary text-uppercase px-3 py-2 rounded-pill shadow-sm">Curso académico</span>
+        </div>
+        
+        <div class="card-body px-4 pt-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <h5 class="card-title text-dark fw-bold mb-0">{{ curso.titulo }}</h5>
+          </div>
+          
+          <p class="text-muted small mb-3 border-bottom pb-2">
+            <strong>Instructor: </strong> <span class="text-dark">{{ curso.instructor }}</span>
+          </p>
+          
+          <p class="card-text text-secondary" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+            {{ curso.descripcion }}
+          </p>
+        </div>
+        
+        <div class="card-footer bg-white border-0 px-4 pb-4">
+          <a [routerLink]="['/cursos/detalle', curso.id]" class="btn btn-primary w-100 fw-bold rounded-3 py-2 shadow-sm mb-2">
+            Ver detalles del curso
+          </a>
+          
+          <div *ngIf="esAdmin">
+            <a [routerLink]="['/cursos/editar', curso.id]" class="btn btn-warning w-100 fw-bold rounded-3 py-2 shadow-sm text-dark">
+              Modificar curso
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-12" *ngIf="cursos.length === 0">
+      <div class="alert alert-light text-center border p-5 shadow-sm rounded-4">
+        <h4 class="text-muted fw-bold">Sin cursos activos</h4>
+        <p class="text-secondary mb-0">No hay cursos disponibles en este momento. Vuelve a revisar más tarde.</p>
+      </div>
+    </div>
+  </div>
+</div>
