@@ -4,17 +4,16 @@ from flask_cors import CORS
 
 # importamos la unica instancia de db directamente desde models
 from .models import db, Usuario, Curso, Inscripcion
+from config import Config
 
 def create_app():
     app = Flask(__name__)
 
-    # configuraciones basicas de la aplicacion y base de datos
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///academia.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['JWT_SECRET_KEY'] = 'clave_secreta_super_segura' 
+    # cargamos la configuracion desde config.py con variables de entorno
+    app.config.from_object(Config)
 
-    # aplicamos cors globalmente
-    CORS(app)
+    # aplicamos cors solo al frontend definido en las variables de entorno
+    CORS(app, origins=[Config.FRONTEND_URL])
 
     # inicializamos las extensiones con nuestra unica instancia de db
     db.init_app(app)
