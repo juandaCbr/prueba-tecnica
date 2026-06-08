@@ -1,0 +1,80 @@
+# ──────────────────────────────────────────────
+# Frontend (Angular)
+# ──────────────────────────────────────────────
+
+# Compiled output
+frontend/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+frontend/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
+# Miscellaneous
+frontend/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# ──────────────────────────────────────────────
+# Backend (Python / Flask)
+# ──────────────────────────────────────────────
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+backend/venv/
+backend/env/
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+
+# Bases de datos de desarrollo
+*.sqlite
+*.sqlite3
+*.db
+backend/instance/
+
+# ──────────────────────────────────────────────
+# Variables de entorno (NUNCA subir al repo)
+# ──────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+backend/.env
+backend/.flaskenv
