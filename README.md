@@ -1,4 +1,3 @@
-# Wrote README.md
 # Plataforma de Cursos Educativos - Prueba Técnica Full Stack
 
 Esta es una solución Full Stack desarrollada para gestionar el catálogo y las inscripciones de una academia virtual. El sistema permite la creación, edición y eliminación de cursos por parte de administradores, así como la exploración, búsqueda y registro en cursos por parte de los estudiantes.
