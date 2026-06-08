@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CursoService } from '../../core/services/curso';
 import { AuthService } from '../../core/services/auth';
@@ -19,18 +19,25 @@ export class ListadoCursosComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object // Inyeccion para identificar la plataforma
   ) {}
 
   ngOnInit(): void {
-    this.esAdmin = this.authService.esAdmin();
+    // Solo verificamos el rol si estamos ejecutando en el navegador (cliente)
+    // Esto previene errores de 'localStorage is not defined' en el servidor Node.js
+    if (isPlatformBrowser(this.platformId)) {
+      this.esAdmin = this.authService.esAdmin();
+    }
+    
+    // La carga de cursos se puede hacer en el servidor sin problemas
+    // para que el HTML ya baje con los datos renderizados (SEO)
     this.cargarCursos();
   }
 
   cargarCursos(): void {
     this.cursoService.obtenerCursos().subscribe({
       next: (data) => {
-        
         const lista = Array.isArray(data) ? data : (data.cursos || []);
         this.allCursos = lista;
         this.cursos = [...this.allCursos]; 
@@ -42,7 +49,6 @@ export class ListadoCursosComponent implements OnInit {
     });
   }
 
- 
   filtrarCursos(event: any): void {
     const termino = event.target.value.toLowerCase();
     this.cursos = this.allCursos.filter(c => 
@@ -54,12 +60,12 @@ export class ListadoCursosComponent implements OnInit {
   inscribirse(cursoId: number): void {
     this.cursoService.inscribirse(cursoId).subscribe({
       next: (res) => {
-        this.mensaje = 'inscripción exitosa. revisa tus cursos.';
+        this.mensaje = 'inscripcion exitosa. revisa tus cursos.';
         this.cdr.detectChanges();
         setTimeout(() => { this.mensaje = ''; this.cdr.detectChanges(); }, 3000);
       },
       error: (err) => {
-        this.mensaje = err.error?.mensaje || 'error al procesar la inscripción';
+        this.mensaje = err.error?.mensaje || 'error al procesar la inscripcion';
         this.cdr.detectChanges();
         setTimeout(() => { this.mensaje = ''; this.cdr.detectChanges(); }, 3000);
       }
