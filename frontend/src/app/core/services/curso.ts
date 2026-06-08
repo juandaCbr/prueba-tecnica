@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoService {
-  private apiUrl = 'http://127.0.0.1:5000/api/cursos';
+  private apiUrl = `${environment.apiUrl}/cursos`;
+  private adminUrl = `${environment.apiUrl}/admin`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -28,7 +30,7 @@ export class CursoService {
 
   // Nuevo método para las estadísticas del admin
   obtenerStats(): Observable<any> {
-    return this.http.get('http://127.0.0.1:5000/api/admin/stats', { headers: this.getHeaders() });
+    return this.http.get(`${this.adminUrl}/stats`, { headers: this.getHeaders() });
   }
 
   crearCurso(curso: any): Observable<any> { 
@@ -48,7 +50,7 @@ export class CursoService {
   }
 
   obtenerMisCursos(): Observable<any> { 
-    return this.http.get('http://127.0.0.1:5000/api/mis-cursos', { headers: this.getHeaders() }); 
+    return this.http.get(`${environment.apiUrl}/mis-cursos`, { headers: this.getHeaders() }); 
   }
   // obtiene la lista de estudiantes inscritos en un curso (solo admin)
   obtenerEstudiantesPorCurso(cursoId: number): Observable<any> {
